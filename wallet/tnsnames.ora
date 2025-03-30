@@ -1,0 +1,12 @@
+dbclouddos_high = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g022f7b21daa166_dbclouddos_high.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+dbclouddos_low = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g022f7b21daa166_dbclouddos_low.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+dbclouddos_medium = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g022f7b21daa166_dbclouddos_medium.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+dbclouddos_tp = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g022f7b21daa166_dbclouddos_tp.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+dbclouddos_tpurgent = (description= (retry_count=20)(retry_delay=3)(address=(protocol=tcps)(port=1522)(host=adb.sa-santiago-1.oraclecloud.com))(connect_data=(service_name=g022f7b21daa166_dbclouddos_tpurgent.adb.oraclecloud.com))(security=(ssl_server_dn_match=yes)))
+
+
+
