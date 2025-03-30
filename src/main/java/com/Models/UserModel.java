@@ -1,4 +1,4 @@
-package com.function.Models;
+package com.Models;
 
 public class UserModel {
 

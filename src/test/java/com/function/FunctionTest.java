@@ -1,6 +1,6 @@
 package com.function;
 
-import com.function.Models.UserModel;
+import com.Models.UserModel;
 import com.microsoft.azure.functions.*;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;

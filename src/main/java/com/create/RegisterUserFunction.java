@@ -1,6 +1,7 @@
-package com.function;
+package com.create;
 
-import com.function.Models.UserModel;
+import com.Models.UserModel;
+import com.database_connection.OracleDBConnection;
 import com.microsoft.azure.functions.ExecutionContext;
 import com.microsoft.azure.functions.HttpMethod;
 import com.microsoft.azure.functions.HttpRequestMessage;
@@ -16,25 +17,15 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-/**
- * Azure Functions with HTTP Trigger.
- */
-public class Function {
+public class RegisterUserFunction {
     private static final Logger logger = Logger.getLogger(OracleDBConnection.class.getName());
-    /**
-     * This function listens at endpoint "/api/HttpExample". Two ways to invoke it using "curl" command in bash:
-     * 1. curl -d "HTTP Body" {your host}/api/HttpExample
-     * 2. curl "{your host}/api/HttpExample?name=HTTP%20Query"
-     */
+
     @FunctionName("registerUser")
     public HttpResponseMessage run(
-            @HttpTrigger(
-                name = "req",
-                methods = {HttpMethod.POST},
-                authLevel = AuthorizationLevel.ANONYMOUS)
-                HttpRequestMessage<Optional<UserModel>> request,
+            @HttpTrigger(name = "req", methods = {
+                    HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<UserModel>> request,
             final ExecutionContext context) {
-                
+
         context.getLogger().info("Java HTTP trigger processed a request.");
 
         try {
@@ -57,7 +48,7 @@ public class Function {
 
             return request.createResponseBuilder(HttpStatus.OK).body(response).build();
 
-        } catch (SQLException e) {            
+        } catch (SQLException e) {
             logger.warning(e.getMessage());
             return request.createResponseBuilder(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage()).build();

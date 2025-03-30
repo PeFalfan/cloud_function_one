@@ -1,1 +1,0 @@
-# cloud_function_one
