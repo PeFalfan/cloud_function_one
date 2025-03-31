@@ -17,15 +17,11 @@ public class UpdateUserFunction {
 
     @FunctionName("UpdateUserFunction")
     public HttpResponseMessage run(
-            @HttpTrigger(
-                    name = "req", 
-                    methods = { HttpMethod.PUT }, 
-                    authLevel = AuthorizationLevel.ANONYMOUS) 
-                    HttpRequestMessage<Optional<UserModel>> request,
+            @HttpTrigger(name = "req", methods = {
+                    HttpMethod.PUT }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<UserModel>> request,
             final ExecutionContext context) {
 
         context.getLogger().info("Java HTTP trigger processed a request.");
-
 
         try {
             // we generate the connection:
@@ -47,21 +43,19 @@ public class UpdateUserFunction {
 
             if (updatedRows == 1) {
                 return request.createResponseBuilder(HttpStatus.OK)
-                    .body("User updated").build();
+                        .header("Content-Type", "application/json")
+                        .body("User updated").build();
             } else {
                 return request.createResponseBuilder(HttpStatus.BAD_REQUEST)
-                    .body("Error updating the user").build();
+                        .body("Error updating the user").build();
             }
-            
-        } catch (SQLException e) {            
+
+        } catch (SQLException e) {
             logger.warning(e.getMessage());
             return request
-                .createResponseBuilder(HttpStatus.BAD_REQUEST)
-                .body(e.getMessage()).build();
+                    .createResponseBuilder(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage()).build();
         }
-
-
-
 
     }
 }

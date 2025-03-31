@@ -55,7 +55,10 @@ public class GetAllUsers {
 
             logger.info(response);
 
-            return request.createResponseBuilder(HttpStatus.OK).body(usersFounded).build();
+            return request.createResponseBuilder(HttpStatus.OK)
+                    .header("Content-Type", "application/json")
+                    .body(usersFounded)
+                    .build();
 
         } catch (SQLException e) {
             logger.warning(e.getMessage());

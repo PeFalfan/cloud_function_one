@@ -46,7 +46,10 @@ public class RegisterUserFunction {
             int insertedRows = preparedStatement.executeUpdate();
             String response = "Rows inserted: " + insertedRows;
 
-            return request.createResponseBuilder(HttpStatus.OK).body(response).build();
+            return request.createResponseBuilder(HttpStatus.OK)
+                    .header("Content-Type", "application/json")
+                    .body(response)
+                    .build();
 
         } catch (SQLException e) {
             logger.warning(e.getMessage());

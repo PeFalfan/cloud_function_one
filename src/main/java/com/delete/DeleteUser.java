@@ -16,7 +16,8 @@ public class DeleteUser {
     @FunctionName("DeleteUser")
     public HttpResponseMessage run(
             @HttpTrigger(name = "req", methods = {
-                    HttpMethod.DELETE }, authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<Long>> request,
+                    HttpMethod.DELETE }, route = "deleteUser/{id}", authLevel = AuthorizationLevel.ANONYMOUS) HttpRequestMessage<Optional<Long>> request,
+            @BindingName("id") Long id,
             final ExecutionContext context) {
         context.getLogger().info("Java HTTP trigger processed a request.");
 
@@ -30,17 +31,21 @@ public class DeleteUser {
             PreparedStatement preparedStatement = conn.prepareStatement(deleteQuery);
 
             // we add the values of the object received
-            preparedStatement.setLong(1, request.getBody().get());
+            preparedStatement.setLong(1, id);
 
             // we execute the query
             int deletedRows = preparedStatement.executeUpdate();
 
             if (deletedRows > 0) {
-                return request.createResponseBuilder(HttpStatus.OK).body(
-                        "Deleted user with ID: " + request.getBody().get()).build();
+                return request.createResponseBuilder(HttpStatus.OK)
+                        .header("Content-Type", "application/json")
+                        .body(
+                                "Deleted user with ID: " + id)
+                        .build();
             } else {
                 return request.createResponseBuilder(HttpStatus.OK)
-                        .body("No se encontró un usuario con ID: " + request.getBody().get()).build();
+                        .body("No se encontró un usuario con ID: " + id)
+                        .build();
             }
 
         } catch (SQLException e) {
