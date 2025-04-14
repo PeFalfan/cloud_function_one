@@ -1,4 +1,4 @@
-package com.Models;
+package com.models;
 
 public class UserModel {
 
@@ -37,5 +37,9 @@ public class UserModel {
 
     public void setRol(String rol) {
         this.rol = rol;
+    }
+
+    public String toString() {
+        return "id: " + this.id + "\nEmail: " + this.email + "\npassword: " + this.password + "\nrol: " + this.rol;
     }
 }
